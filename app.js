@@ -3,24 +3,27 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require('mongoose');
 
 const indexRouter = require('./server/routes/index');
-const usersRouter = require('./server/routes/users');
+const eventsRouter = require('./server/routes/events');
 
 const app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/events', eventsRouter);
+
+eventsRouter.route('/events').get((res, req) => {
+  Event.find((err, event) => {
+    if (err) {
+      return res.send(err);
+    }
+    return res.json(event);
+  });
+});
+
+// create database
+// const db = mongoose.connect('mongodb://localhost/eventsapi');
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
