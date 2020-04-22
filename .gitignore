@@ -1,2 +1,12 @@
 node_modules
 .eslintrc.js
+# Tests
+tests
+
+# dotenv environment variables file
+.env
+.env.test
+
+route.rest
+
+nodemon.json

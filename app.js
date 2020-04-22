@@ -1,44 +1,49 @@
 'use strict'; //For use with ES6
 
-const express = require('express');
-const mongoose = require('mongoose');
-const http = require('http');
 
-const app = express();
-// app.use(cors());
-const port = process.env.PORT || 3000;
 
-// DATABASE
+// require('dotenv').config();
+// const express = require('express');
+// const mongoose = require('mongoose');
+// const http = require('http');
+// const bodyParser = require('body-parser');
 
-mongoose
-  .connect('mongodb+srv://cluster0-7uavs.mongodb.net/test', {
-    useNewUrlParser: true,
-  })
-  .then(() => {
-    console.log('Connected to the database...');
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+// const app = express();
 
-// MIDDLEWARE
-app.use('/createEvent', () => {});
+// const port = process.env.PORT || 5000;
 
-// PASS IN JSON
-app.use(express.json());
+// // DATABASE
 
-// PASS IN FORM DATA
-app.use(express.urlencoded({ extended: true }));
+// mongoose.connect(
+//   `mongodb+srv://jasterix:123@cluster0-7uavs.mongodb.net/test?retryWrites=true&w=majority`,
+//   {
+//     useNewUrlParser: true,
+//   }
+// );
 
-// CONTROLLERS
+// // MIDDLEWARE
+// app.use(
+//   bodyParser.urlencoded({
+//     extended: true,
+//   })
+// );
+// app.use(bodyParser.json());
 
-const EventController = require('./src/controllers/EventController');
-// ROUTES
+// // PASS IN FORM DATA
+// // app.use(express.urlencoded({ extended: true }));
 
-app.post('api/event/create', EventController.create);
+// // CONTROLLERS
 
-// START SERVER
-app.listen(port, () => {
-  console.log(`Running server on port ${port}`);
-});
-8;
+// const EventController = require('./API/controllers/EventController');
+// // ROUTES
+// app.get('/', EventController.get);
+// app.post('/', EventController.create);
+// // app.post('/api/event/update', EventController.update);
+// // app.get('/api/event/retrieve', EventController.retrieve);
+// // app.delete('/api/event/delete', EventController.delete);
+
+// // START SERVER
+// app.listen(port, () => {
+//   console.log(`Running server on port ${port}`);
+// });
+

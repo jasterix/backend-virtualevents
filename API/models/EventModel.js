@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const EventSchema = new Schema({
+const EventSchema = mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   title: String,
   startDate: Date,
   endDate: Date,
@@ -12,4 +13,4 @@ const EventSchema = new Schema({
   techWomen: Boolean,
   blackTech: Boolean,
 });
-module.exports = mongoose.model('event', EventSchema);
+module.exports = mongoose.model('Event', EventSchema);
