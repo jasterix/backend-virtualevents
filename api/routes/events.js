@@ -9,15 +9,16 @@ const Event = require('../models/event');
 router.post('/new', (request, response, next) => {
   console.log(request.body);
   const event = new Event({
-    title: req.body.title,
-    startDate: req.body.startDate,
-    endDate: req.body.endDate,
-    description: req.body.description,
-    eventLink: req.body.eventLink,
-    eventType: req.body.eventType,
-    free: req.body.free,
-    techWomen: req.body.techWomen,
-    blackTech: req.body.blackTech,
+    _id: new mongoose.Types.ObjectId(),
+    title: request.body.title,
+    startDate: request.body.startDate,
+    endDate: request.body.endDate,
+    description: request.body.description,
+    eventLink: request.body.eventLink,
+    eventType: request.body.eventType,
+    free: request.body.free,
+    techWomen: request.body.techWomen,
+    blackTech: request.body.blackTech,
   });
   if (!request.body.title) {
     return response.status(400).json({
