@@ -1,0 +1,39 @@
+{
+  "name": "blk-wall",
+  "version": "1.0.0",
+  "description": "A curated directory of black owned restaurants, bars and more in NYC",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "postbuild": "NPM_CONFIG_PRODUCTION=false npm run build --prefix client",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingu-voyages/v16-solo-jasterix.git"
+  },
+  "author": "jasterix",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chingu-voyages/v16-solo-jasterix/issues"
+  },
+  "homepage": "https://github.com/chingu-voyages/v16-solo-jasterix#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "jsonwebtoken": "^7.3.0",
+    "moment": "^2.17.1",
+    "moment-timezone": "^0.5.13",
+    "mongoose": "^5.9.10",
+    "morgan": "^1.9.1",
+    "node-uuid": "^1.4.8",
+    "react-dom": "^16.13.0",
+    "react-scripts": "^3.4.0",
+    "swagger-ui-express": "^2.0.13",
+    "sync-request": "^4.0.2"
+  }
+}
