@@ -20,12 +20,12 @@ const db = mongoose.connection;
 db.once('open', () => console.log('Connected to Database'));
 
 app.use(morgan('dev'));
+app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
     extended: false,
   })
 );
-app.use(bodyParser.json());
 
 app.use((request, response, next) => {
   response.header('Access-Control-Allow-Origin', '*');

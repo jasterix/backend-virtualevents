@@ -30,4 +30,5 @@ const eventSeed = async () => {
   }
 };
 
-eventSeed();
+// Uncomment to seed database
+// eventSeed();

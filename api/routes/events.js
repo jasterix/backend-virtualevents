@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const Event = require('../models/event');
 
 ///////////////////////// CREATE one event
+
 router.post('/new', (request, response, next) => {
   console.log(request.body);
   const event = new Event({
@@ -20,15 +21,17 @@ router.post('/new', (request, response, next) => {
   event
     .save()
     .then((result) => {
-      return response.status(201).json({
+      return response.status(201).send({
         message: 'Created a new Event sucessfully',
       });
-      // console.log(result);
+      console.log(result);
     })
-    .catch((error) => console.log(error));
-  response.status(500).json({
-    error: error + ' error here',
-  });
+    .catch((error) => {
+      return response.status(500).json({
+        error: error + ' error here',
+      });
+      console.log(error);
+    });
 });
 
 //////////////////////////GET all events
@@ -51,6 +54,7 @@ router.get('/', (request, response, next) => {
 router.get('/:eventId', (request, response, next) => {
   const id = request.params.eventId;
   Event.findById(id)
+    .deleteMany()
     .exec()
     .then((doc) => {
       console.log('From database', doc);
@@ -64,7 +68,7 @@ router.get('/:eventId', (request, response, next) => {
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).json({ error: err });
+      response.status(500).json({ error: err });
     });
 });
 
@@ -104,4 +108,18 @@ router.delete('/:eventId', (request, response, next) => {
       });
     });
 });
+
+/////////////////// DELETE all events
+
+router.get('/', (request, response, next) => {
+  try {
+    // db.events.deleteMany({});
+    console.log(db.events.find({}));
+
+    db.events.find({}).forEach((event) => db.events.remove({ _id: event._id }));
+  } catch (e) {
+    response.status(500).json();
+  }
+});
+
 module.exports = router;
