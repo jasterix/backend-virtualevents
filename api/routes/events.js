@@ -111,7 +111,7 @@ router.delete('/:eventId', (request, response, next) => {
 
 /////////////////// DELETE all events
 
-router.get('/', (request, response, next) => {
+router.get('/destroy', (request, response, next) => {
   try {
     // db.events.deleteMany({});
     console.log(db.events.find({}));
