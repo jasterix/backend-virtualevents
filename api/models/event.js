@@ -3,9 +3,15 @@ const mongoose = require('mongoose');
 const eventSchema = mongoose.Schema(
   {
     _id: mongoose.Schema.Types.ObjectId,
-    title: { type: String },
-    eventType: { type: String },
-    website: { type: String, required: false },
+    title: String,
+    startDate: Date,
+    endDate: Date,
+    description: String,
+    eventLink: String,
+    eventType: String,
+    free: { type: Boolean, default: true },
+    techWomen: Boolean,
+    blackTech: Boolean,
   },
   {
     timestamps: true,
