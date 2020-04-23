@@ -30,7 +30,7 @@ router.post('/new', (request, response, next) => {
     .save()
     .then((result) => {
       return response.status(201).send({
-        message: 'Created a new Event sucessfully',
+        message: 'Created a new event sucessfully',
       });
       console.log(result);
     })

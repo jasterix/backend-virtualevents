@@ -10,3 +10,6 @@ tests
 route.rest
 
 nodemon.json
+
+.vscode
+.ds_store

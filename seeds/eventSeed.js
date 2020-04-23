@@ -30,5 +30,22 @@ const eventSeed = async () => {
   }
 };
 
+const excelSeed = () => {
+  Event.create({
+    _id: new mongoose.Types.ObjectId(),
+    title: 'Red Hat Summit',
+    startDate: '43949',
+    endDate: '43950',
+    description:
+      'Each year, Red Hat Summit is one of our favorite events of the year because it brings together our customers, partners, community members and Red Hatters to talk about the open source innovations and best practices that are enabling the future of enterprise technology.',
+    eventLink:
+      'https://www.redhat.com/en/blog/moving-red-hat-summit-2020-virtual-experience',
+    eventType: 'conference',
+    free: true,
+  });
+};
+
+// excelSeed();
+
 // Uncomment to seed database
 // eventSeed();
