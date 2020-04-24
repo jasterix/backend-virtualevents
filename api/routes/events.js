@@ -4,8 +4,11 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Event = require('../models/event');
 
+////////////////////Show form to create event
+router.get('/new', (request, response, next) => {
+  response.render('pages/create');
+});
 ///////////////////////// CREATE one event
-
 router.post('/new', (request, response, next) => {
   console.log(request.body);
   const event = new Event({
@@ -23,19 +26,19 @@ router.post('/new', (request, response, next) => {
   if (!request.body.title) {
     return response.status(400).json({
       status: 'error',
-      error: 'req body title cannot be empty',
+      error: 'request body title cannot be empty',
     });
   }
   event
     .save()
     .then((result) => {
+      response.redirect('/events');
       return response.status(201).send({
         message: 'Created a new event sucessfully',
       });
-      console.log(result);
     })
     .catch((error) => {
-      return response.status(500).json({
+      response.status(500).json({
         error: error + ' error here',
       });
       console.log(error);
@@ -48,11 +51,12 @@ router.get('/', (request, response, next) => {
     .exec()
     .then((docs) => {
       console.log(docs);
-      response.status(200).json(docs);
+      response.render('pages/home');
+      return response.status(200).json(docs);
     })
     .catch((error) => {
       console.log(error);
-      response.status(500).json({
+      return response.status(500).json({
         error: error,
       });
     });

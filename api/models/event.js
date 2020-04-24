@@ -21,12 +21,12 @@ const eventSchema = mongoose.Schema(
 
 // middleware
 
-eventSchema.pre( "save", function ( next ) {
-  this.date = function mergeDate(this.startDate, this.endDate)
-})
+// eventSchema.pre( "save", function ( next ) {
+//   this.date = function mergeDate(this.startDate, this.endDate)
+// })
 
 module.exports = mongoose.model('Event', eventSchema);
 
-function mergeDate( startDate, endDate ) {
-  return `${startDate} - ${endDate}`
+function mergeDate(startDate, endDate) {
+  return `${startDate} - ${endDate}`;
 }
