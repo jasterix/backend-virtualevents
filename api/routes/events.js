@@ -3,12 +3,14 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Event = require('../models/event');
+const mainController = require('../controllers/main.controller');
+const eventsController = require('../controllers/events.controller');
 
-////////////////////Show home page
-router.get('/home', (request, response, next) => {
-  // es.render('registration', {error: false});
-  response.render('pages/home');
-});
+// GET HOME PAGE / MAIN CONTROLLER
+router.get('/home', mainController.getHome);
+
+// GET ALL EVENTS / EVENTS CONTROLLER
+router.get('/', eventsController.getEvents);
 
 ////////////////////Show form to create event
 router.get('/new', (request, response, next) => {
@@ -52,21 +54,21 @@ router.post('/new', (request, response, next) => {
 });
 
 //////////////////////////GET all events
-router.get('/', (request, response, next) => {
-  Event.find()
-    .exec()
-    .then((docs) => {
-      console.log(docs);
-      response.render('pages/home');
-      return response.status(200).json(docs);
-    })
-    .catch((error) => {
-      console.log(error);
-      response.status(500).json({
-        error: error,
-      });
-    });
-});
+// router.get('/', (request, response, next) => {
+//   Event.find()
+//     .exec()
+//     .then((docs) => {
+//       console.log(docs);
+//       response.render('pages/home');
+//       return response.status(200).json(docs);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//       response.status(500).json({
+//         error: error,
+//       });
+//     });
+// });
 
 ////////////////////////////// GET one event by ID
 router.get('/:eventId', (request, response, next) => {
