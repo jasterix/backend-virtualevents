@@ -1,25 +1,29 @@
 require('dotenv').config();
-
+// require('bootstrap');
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const expressLayout = require('express-ejs-layouts');
 
 // IMPORT ROUTES
 const eventRoutes = require('./api/routes/events');
 
+// CONNECT TO MONGODB DATABASE
 mongoose
   .connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
   })
-  .catch((err) => console.log(err));
+  .catch((err) => console.log(`Error: ${err}`));
 
-// Log when connection is successful
+// LOG WHEN CONNECTION IS SUCCESSFUL
 const db = mongoose.connection;
-db.once('open', () => console.log('Connected to Database'));
+db.once('open', () => console.log('Connected to database successfully'));
 
 app.use(morgan('dev'));
+
+// SET UP MIDDLEWARE
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
@@ -27,21 +31,11 @@ app.use(
   })
 );
 
-app.use((request, response, next) => {
-  response.header('Access-Control-Allow-Origin', '*');
-  response.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  );
-  if (request.method === 'OPTIONS') {
-    response.header(
-      'Access-Control-Allow-Methods',
-      'PUT, POST, PATCH, DELETE, GET'
-    );
-    return response.status(200).json({});
-  }
-  next();
-});
+// TELL EXPRESS WHERE TO LOOK FOR STATIC ASSETS
+app.use(express.static(__dirname + '/public'));
+
+// Set EJS AS TEMPLATING ENGINE
+app.set('view engine', 'ejs');
 
 // Routes which should handle requests
 app.use('/events', eventRoutes);

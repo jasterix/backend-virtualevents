@@ -4,6 +4,12 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Event = require('../models/event');
 
+////////////////////Show home page
+router.get('/home', (request, response, next) => {
+  // es.render('registration', {error: false});
+  response.render('pages/home');
+});
+
 ////////////////////Show form to create event
 router.get('/new', (request, response, next) => {
   response.render('pages/create');
@@ -56,7 +62,7 @@ router.get('/', (request, response, next) => {
     })
     .catch((error) => {
       console.log(error);
-      return response.status(500).json({
+      response.status(500).json({
         error: error,
       });
     });
