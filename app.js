@@ -14,6 +14,7 @@ const eventRoutes = require('./api/routes/events');
 mongoose
   .connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
   .catch((err) => console.log(`Error: ${err}`));
 
