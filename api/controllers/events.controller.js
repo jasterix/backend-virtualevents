@@ -9,6 +9,7 @@ module.exports = {
   postEvent: postEvent,
   getEvent: getEvent,
   updateEvent: updateEvent,
+  deleteEvent: deleteEvent,
 };
 
 function getEvents(request, response) {
@@ -25,7 +26,7 @@ function postEvent(request, response, next) {
   if (!request.body.title) {
     return response.status(400).json({
       status: 'error',
-      error: 'request body title cannot be empty',
+      error: 'request body cannot be empty',
     });
   }
 
@@ -45,9 +46,9 @@ function postEvent(request, response, next) {
     .then((event) => {
       console.log(event._id);
       response.redirect(`${event._id}`);
-      //   return response.status(201).send({
-      //     message: 'Created a new event sucessfully',
-      //   });
+      return response.status(201).send({
+        message: 'Created a new event sucessfully',
+      });
       console.log(event);
     });
 }
@@ -68,21 +69,42 @@ function getEvent(request, response) {
 
 function updateEvent(request, response) {
   const id = request.params.event_id;
-  //   const params = request.body;
-  //   const updatedEvent = { _id: request.params.id };
+  const params = request.body;
+  const updatedEvent = { _id: request.params.id };
 
-  //   for (const [key, value] of Object.entries(params)) {
-  //     updatedEvent[key] = value;
-  //   }
+  for (const [key, value] of Object.entries(params)) {
+    updatedEvent[key] = value;
+  }
 
   Event.findOneAndUpdate(
     { _id: id },
     request.body,
-    { upsert: false, new: true, runValidators: true, useFindAndModify: true }, // options
-    function (err, updatedEvent) {
+    { upsert: false, new: true, runValidators: true, useFindAndModify: false }, // options
+    function (error, updatedEvent) {
       // callback
-      if (err) console.log('ERROR ' + err);
-      else response.json(updatedEvent);
+      if (error) {
+        response.status(404);
+        response.send('Events not found!');
+      }
+      response.json(updatedEvent);
     }
   );
+  response.render('pages/event', {
+    event: updatedEvent,
+  });
+}
+
+function deleteEvent(request, response) {
+  const id = request.params.event_id;
+  Event.deleteOne({ _id: id }, function (error) {
+    if (error) {
+      response.json({
+        error: 'Event not found',
+      });
+    }
+    response.json({
+      message: `Deleted event with id ${id}`,
+    });
+    response.redirect('/events');
+  });
 }
