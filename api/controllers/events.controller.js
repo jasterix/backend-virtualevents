@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Event = require('../models/event');
 const { check, validationResult } = require('express-validator');
+const mongodb = require('mongodb');
+const ObjectId = mongodb.ObjectID;
 
 module.exports = {
   getEvents: getEvents,
@@ -50,13 +52,13 @@ function postEvent(request, response, next) {
 }
 
 function getEvent(request, response) {
-  // get a single event
-  Event.findOne({ _id: request.params._id }, (err, event) => {
+  let id = request.params.id;
+  console.log(id);
+  Event.find({ _id: ObjectId(id) }, (err, event) => {
     if (err) {
       response.status(404);
-      response.send('Event not found!');
+      response.send('Events not found!');
     }
-
     response.render('pages/event', {
       event: event,
     });
