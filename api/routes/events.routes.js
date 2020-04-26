@@ -27,6 +27,9 @@ router.put('/:event_id', eventsController.updateEvent);
 // DELETE EVENT / EVENT CONTROLLER
 router.delete('/:event_id', eventsController.deleteEvent);
 
+// DELETE ALL EVENTS / EVENT CONTROLLER
+router.delete('/deleteAll', eventsController.deleteAllEvents);
+
 ///////////////////////// CREATE one event
 
 // // router.post('/new', (request, response, next) => {

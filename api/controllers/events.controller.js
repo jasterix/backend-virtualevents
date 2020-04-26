@@ -10,6 +10,7 @@ module.exports = {
   getEvent: getEvent,
   updateEvent: updateEvent,
   deleteEvent: deleteEvent,
+  deleteAllEvents: deleteAllEvents,
 };
 
 function getEvents(request, response) {
@@ -106,5 +107,18 @@ function deleteEvent(request, response) {
       message: `Deleted event with id ${id}`,
     });
     response.redirect('/events');
+  });
+}
+
+function deleteAllEvents(request, response) {
+  Event.deleteMany({}, function (error) {
+    if (error) {
+      response.json({
+        error: 'Event not found',
+      });
+    }
+    response.json({
+      message: `Deleted all events`,
+    });
   });
 }
