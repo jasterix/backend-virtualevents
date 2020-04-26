@@ -9,7 +9,7 @@ const expressLayout = require('express-ejs-layouts');
 const expressValidator = require('express-validator');
 
 // IMPORT ROUTES
-const eventRoutes = require('./api/routes/events');
+const eventRoutes = require('./api/routes/events.routes.js');
 
 // CONNECT TO MONGODB DATABASE
 mongoose

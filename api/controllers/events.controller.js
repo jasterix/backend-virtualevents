@@ -8,11 +8,12 @@ module.exports = {
   getEvents: getEvents,
   postEvent: postEvent,
   getEvent: getEvent,
+  updateEvent: updateEvent,
 };
 
 function getEvents(request, response) {
-  Event.find({}, (err, events) => {
-    if (err) {
+  Event.find({}, (error, events) => {
+    if (error) {
       response.status(404);
       response.send('Events not found!');
     }
@@ -54,8 +55,8 @@ function postEvent(request, response, next) {
 function getEvent(request, response) {
   let id = request.params.id;
   console.log(id);
-  Event.find({ _id: ObjectId(id) }, (err, event) => {
-    if (err) {
+  Event.find({ _id: ObjectId(id) }, (error, event) => {
+    if (error) {
       response.status(404);
       response.send('Events not found!');
     }
@@ -63,4 +64,25 @@ function getEvent(request, response) {
       event: event,
     });
   });
+}
+
+function updateEvent(request, response) {
+  const id = request.params.event_id;
+  //   const params = request.body;
+  //   const updatedEvent = { _id: request.params.id };
+
+  //   for (const [key, value] of Object.entries(params)) {
+  //     updatedEvent[key] = value;
+  //   }
+
+  Event.findOneAndUpdate(
+    { _id: id },
+    request.body,
+    { upsert: false, new: true, runValidators: true, useFindAndModify: true }, // options
+    function (err, updatedEvent) {
+      // callback
+      if (err) console.log('ERROR ' + err);
+      else response.json(updatedEvent);
+    }
+  );
 }
