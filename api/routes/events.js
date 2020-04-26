@@ -18,6 +18,9 @@ router.get('/', eventsController.getEvents);
 // CREATE EVENT / EVENT CONTROLLER
 router.post('/new', eventsController.postEvent);
 
+// GET EVENT PAGE/ MAIN CONTROLLER
+router.get('/:id', eventsController.getEvent);
+
 ///////////////////////// CREATE one event
 
 // // router.post('/new', (request, response, next) => {

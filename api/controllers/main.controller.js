@@ -1,3 +1,5 @@
+const Event = require('../models/event');
+
 module.exports = {
   showHome: (request, response) => {
     response.render('pages/home');
@@ -5,7 +7,4 @@ module.exports = {
   showCreate: (request, response) => {
     response.render('pages/create');
   },
-  showEvent: ( request, response => {
-    response.render("pages/event")
-  })
 };

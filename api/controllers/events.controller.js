@@ -5,6 +5,7 @@ const { check, validationResult } = require('express-validator');
 module.exports = {
   getEvents: getEvents,
   postEvent: postEvent,
+  getEvent: getEvent,
 };
 
 function getEvents(request, response) {
@@ -40,10 +41,24 @@ function postEvent(request, response, next) {
     .save()
     .then((event) => {
       console.log(event._id);
-      response.redirect(`events/${event._id}`);
+      response.redirect(`${event._id}`);
       //   return response.status(201).send({
       //     message: 'Created a new event sucessfully',
       //   });
       console.log(event);
     });
+}
+
+function getEvent(request, response) {
+  // get a single event
+  Event.findOne({ _id: request.params._id }, (err, event) => {
+    if (err) {
+      response.status(404);
+      response.send('Event not found!');
+    }
+
+    response.render('pages/event', {
+      event: event,
+    });
+  });
 }
