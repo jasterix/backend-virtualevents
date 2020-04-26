@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const expressLayout = require('express-ejs-layouts');
+const expressValidator = require('express-validator');
 
 // IMPORT ROUTES
 const eventRoutes = require('./api/routes/events');
