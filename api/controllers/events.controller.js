@@ -45,25 +45,25 @@ function postEvent(request, response, next) {
   })
     .save()
     .then((event) => {
-      console.log(event._id);
       response.redirect(`${event._id}`);
       return response.status(201).send({
         message: 'Created a new event sucessfully',
       });
-      console.log(event);
     });
 }
 
 function getEvent(request, response) {
-  let id = request.params.id;
-  console.log(id);
+  let id = request.params.event_id;
+  let event = Event.findById(id);
+
   Event.find({ _id: ObjectId(id) }, (error, event) => {
     if (error) {
       response.status(404);
       response.send('Events not found!');
     }
     response.render('pages/event', {
-      event: event,
+      event: event[0],
+      string: 'hello',
     });
   });
 }
