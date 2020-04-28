@@ -12,4 +12,4 @@ route.rest
 nodemon.json
 
 .vscode
-.ds_store
+.ds_storenpm-debug.log
