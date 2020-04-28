@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const eventSchema = mongoose.Schema(
   {
-    _id: mongoose.Schema.Types.ObjectId,
     title: String,
     date: String,
     startDate: Date,
@@ -25,7 +24,7 @@ const eventSchema = mongoose.Schema(
 //   this.date = function mergeDate(this.startDate, this.endDate)
 // })
 
-module.exports = mongoose.model('Event', eventSchema);
+module.exports = mongoose.model("Event", eventSchema);
 
 function mergeDate(startDate, endDate) {
   return `${startDate} - ${endDate}`;

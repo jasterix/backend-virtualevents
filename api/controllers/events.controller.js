@@ -16,7 +16,7 @@ module.exports = {
 function getEvents(request, response) {
   Event.find({}, (error, events) => {
     if (error) {
-      response.status(404);
+      return response.status(404);
       response.send('Events not found!');
     }
     return response.status(200).json(events);
@@ -46,7 +46,7 @@ function postEvent(request, response, next) {
     .save()
     .then((event) => {
       response.redirect(`${event._id}`);
-      return response.status(201).send({
+      return response.send({
         message: 'Created a new event sucessfully',
       });
     });

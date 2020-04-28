@@ -1,8 +1,9 @@
 <div class="jumbotron text-center">
-  View Event <% include layout%>
-  <h1>Title: <%= event["title"] %></h1>
+  <h2>Title: <%= event["title"] %></h2>
   <div>
-    <h4>Date: <%= event.startDate %> - <%= event.endDate %></h4>
+    <p></p>
   </div>
-  <p><%= event.description %></p>
+
+  <label for="description">Description:</label>
+  <p id="description"><%= event.description %></p>
 </div>

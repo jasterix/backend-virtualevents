@@ -5,7 +5,7 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const expressLayout = require('express-ejs-layouts');
+const expressLayouts = require('express-ejs-layouts');
 const expressValidator = require('express-validator');
 
 // IMPORT ROUTES
@@ -39,6 +39,7 @@ app.use(express.static(__dirname + '/public'));
 
 // Set EJS AS TEMPLATING ENGINE
 app.set('view engine', 'ejs');
+app.use(expressLayouts);
 
 // Routes which should handle requests
 app.use('/events', eventRoutes);
