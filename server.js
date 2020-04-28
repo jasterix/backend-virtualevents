@@ -1,3 +1,4 @@
+const eventSeed = require('./seeds/eventSeed');
 // // serve static assets when in production
 // if (process.env.NODE_ENV === 'production') {
 //   // Set static folder

@@ -43,6 +43,9 @@ app.use(expressLayouts);
 
 // Routes which should handle requests
 app.use('/events', eventRoutes);
+app.get('/', (request, response) => {
+  response.render('pages/home');
+});
 
 app.use((request, response, next) => {
   const error = new Error('Not found');
