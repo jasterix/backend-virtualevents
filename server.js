@@ -8,8 +8,10 @@
 // } else {
 // }
 
-const http = require('http');
-const app = require('./app');
+// const eventSeed = require("./seeds/eventSeed");
+
+const http = require("http");
+const app = require("./app");
 
 const port = process.env.PORT || 3000;
 

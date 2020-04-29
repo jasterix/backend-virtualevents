@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const Event = require('../models/event');
-const { check, validationResult } = require('express-validator');
-const mongodb = require('mongodb');
+const mongoose = require("mongoose");
+const Event = require("../models/event");
+const { check, validationResult } = require("express-validator");
+const mongodb = require("mongodb");
 const ObjectId = mongodb.ObjectID;
 
 module.exports = {
@@ -17,7 +17,7 @@ function getEvents(request, response) {
   Event.find({}, (error, events) => {
     if (error) {
       return response.status(404);
-      response.send('Events not found!');
+      response.send("Events not found!");
     }
     return response.status(200).json(events);
   });
@@ -26,8 +26,8 @@ function getEvents(request, response) {
 function postEvent(request, response, next) {
   if (!request.body.title) {
     return response.status(400).json({
-      status: 'error',
-      error: 'request body cannot be empty',
+      status: "error",
+      error: "request body cannot be empty",
     });
   }
 
@@ -46,9 +46,10 @@ function postEvent(request, response, next) {
     .save()
     .then((event) => {
       response.redirect(`${event._id}`);
-      return response.send({
-        message: 'Created a new event sucessfully',
-      });
+
+      // return response.send({
+      //   message: 'Created a new event sucessfully',
+      // });
     });
 }
 
@@ -58,12 +59,11 @@ function getEvent(request, response) {
 
   Event.find({ _id: ObjectId(id) }, (error, event) => {
     if (error) {
-      response.status(404);
-      response.send('Events not found!');
+      response.status(404).send("Events not found!");
     }
-    response.render('pages/event', {
+    response.render("pages/event", {
       event: event[0],
-      string: 'hello',
+      string: "hello",
     });
   });
 }
@@ -85,12 +85,12 @@ function updateEvent(request, response) {
       // callback
       if (error) {
         response.status(404);
-        response.send('Events not found!');
+        response.send("Events not found!");
       }
       response.json(updatedEvent);
     }
   );
-  response.render('pages/event', {
+  response.render("pages/event", {
     event: updatedEvent,
   });
 }
@@ -100,13 +100,13 @@ function deleteEvent(request, response) {
   Event.deleteOne({ _id: id }, function (error) {
     if (error) {
       response.json({
-        error: 'Event not found',
+        error: "Event not found",
       });
     }
     response.json({
       message: `Deleted event with id ${id}`,
     });
-    response.redirect('/events');
+    response.redirect("/events");
   });
 }
 
@@ -114,7 +114,7 @@ function deleteAllEvents(request, response) {
   Event.deleteMany({}, function (error) {
     if (error) {
       response.json({
-        error: 'Event not found',
+        error: "Event not found",
       });
     }
     response.json({
