@@ -96,24 +96,7 @@ function updateEvent(request, response, next) {
 
 function deleteEvent(request, response, next) {
   const id = request.params.event_id;
-  Event.findOneAndDelete({ _id: id }, (error) => {
-    if (error) {
-      response.json({
-        error: "Event not found",
-      });
-    }
-  })
-    .then((data) =>
-      response.json({
-        message: "Event deleted",
-        event: data,
-      })
-    )
-    .catch(next);
-}
-
-function deleteAllEvents(request, response, next) {
-  Event.deleteMany({}, (error) => {
+  Event.deleteOne({ _id: id }, (error) => {
     if (error) {
       response.json({
         error: "Event not found",
@@ -122,8 +105,22 @@ function deleteAllEvents(request, response, next) {
   }).then((data) =>
     response
       .json({
-        message: `All events deleted`,
+        message: "Event deleted",
+        event: data,
       })
       .catch(next)
   );
+}
+
+function deleteAllEvents(request, response) {
+  Event.deleteMany({}, function (error) {
+    if (error) {
+      response.json({
+        error: "Event not found",
+      });
+    }
+    response.json({
+      message: `Deleted all events`,
+    });
+  });
 }

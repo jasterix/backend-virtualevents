@@ -2,7 +2,7 @@ const faker = require("faker");
 const mongoose = require("mongoose");
 const Event = require("../api/models/event.js");
 
-const eventSeed = () => {
+const seedEvents = () => {
   try {
     const quantity = 10;
     const events = [
@@ -234,11 +234,10 @@ const eventSeed = () => {
         free: true,
       },
     ];
-    let i = 0;
+
     events.forEach((event) => {
       Event.create(event).then((result) => {
-        i++;
-        console.log(i, "---------------", result);
+        console.log(result);
       });
     });
   } catch (error) {
@@ -246,22 +245,4 @@ const eventSeed = () => {
   }
 };
 
-// const excelSeed = () => {
-//   console.log('done');
-// };
-
-// excelSeed();
-// eventSeed();
-
-let a = Event.create({
-  title: "LessCon - the first Serverless security conference",
-  startDate: "May 14, 2020, 1:00 PM EDT",
-  endDate: "May 14, 2020, 4:00 PM EDT",
-  description:
-    "LessSecure is the first Serverless Security dedicated event looking to exchange in-depth knowledge and expertise in from both sides, offensive and defensive.",
-  eventLink: "https://www.papercall.io/lesscon",
-  eventType: "conference",
-  techWomen: false,
-});
-
-// console.log(a);
+// seedEvents();
