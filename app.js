@@ -1,15 +1,15 @@
-require('dotenv').config();
+require("dotenv").config();
 // require('bootstrap');
-const express = require('express');
+const express = require("express");
 const app = express();
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const expressLayouts = require('express-ejs-layouts');
-const expressValidator = require('express-validator');
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const expressLayouts = require("express-ejs-layouts");
+const expressValidator = require("express-validator");
 
 // IMPORT ROUTES
-const eventRoutes = require('./api/routes/events.routes.js');
+const eventRoutes = require("./api/routes/events.routes.js");
 
 // CONNECT TO MONGODB DATABASE
 mongoose
@@ -19,11 +19,23 @@ mongoose
   })
   .catch((err) => console.log(`Error: ${err}`));
 
+//since mongoose promise is depreciated, we override it with node's promise
+// mongoose.Promise = global.Promise;
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 // LOG WHEN CONNECTION IS SUCCESSFUL
 const db = mongoose.connection;
-db.once('open', () => console.log('Connected to database successfully'));
+db.once("open", () => console.log("Connected to database successfully"));
 
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 
 // SET UP MIDDLEWARE
 app.use(bodyParser.json());
@@ -35,20 +47,20 @@ app.use(
 );
 
 // TELL EXPRESS WHERE TO LOOK FOR STATIC ASSETS
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + "/public"));
 
 // Set EJS AS TEMPLATING ENGINE
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 app.use(expressLayouts);
 
 // Routes which should handle requests
-app.use('/events', eventRoutes);
-app.get('/', (request, response) => {
-  response.render('pages/home');
+app.use("/api", eventRoutes);
+app.get("/", (request, response) => {
+  response.render("pages/home");
 });
 
 app.use((request, response, next) => {
-  const error = new Error('Not found');
+  const error = new Error("Not found");
   error.status = 404;
   next(error);
 });
