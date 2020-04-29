@@ -17,7 +17,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .catch((err) => console.log(`Error: ${err}`));
+  .catch((err) => console.log(`Database Error: ${err}`));
 
 //since mongoose promise is depreciated, we override it with node's promise
 // mongoose.Promise = global.Promise;

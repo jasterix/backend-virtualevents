@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const Event = require('../models/event');
-const { check, validationResult } = require('express-validator');
-const mongodb = require('mongodb');
+const mongoose = require("mongoose");
+const Event = require("../models/event");
+const { check, validationResult } = require("express-validator");
+const mongodb = require("mongodb");
 const ObjectId = mongodb.ObjectID;
 
 module.exports = {
@@ -13,21 +13,21 @@ module.exports = {
   deleteAllEvents: deleteAllEvents,
 };
 
-function getEvents(request, response) {
+function getEvents(request, response, next) {
   Event.find({}, (error, events) => {
     if (error) {
-      return response.status(404);
-      response.send('Events not found!');
+      console.log(error);
     }
-    return response.status(200).json(events);
-  });
+  })
+    .then((data) => response.json(data))
+    .catch(next);
 }
 
 function postEvent(request, response, next) {
   if (!request.body.title) {
     return response.status(400).json({
-      status: 'error',
-      error: 'request body cannot be empty',
+      status: "error",
+      error: "Request body cannot be empty",
     });
   }
 
@@ -44,31 +44,29 @@ function postEvent(request, response, next) {
     blackTech: request.body.blackTech,
   })
     .save()
-    .then((event) => {
-      response.redirect(`${event._id}`);
-      return response.send({
-        message: 'Created a new event sucessfully',
+    .then((data) => {
+      response.json({
+        message: "Created a new event sucessfully",
+        event: data,
       });
-    });
+    })
+    .catch(next);
 }
 
-function getEvent(request, response) {
+function getEvent(request, response, next) {
   let id = request.params.event_id;
   let event = Event.findById(id);
 
-  Event.find({ _id: ObjectId(id) }, (error, event) => {
+  Event.find({ _id: ObjectId(id) }, (error, events) => {
     if (error) {
-      response.status(404);
-      response.send('Events not found!');
+      console.log(error);
     }
-    response.render('pages/event', {
-      event: event[0],
-      string: 'hello',
-    });
-  });
+  })
+    .then((data) => response.json(data))
+    .catch(next);
 }
 
-function updateEvent(request, response) {
+function updateEvent(request, response, next) {
   const id = request.params.event_id;
   const params = request.body;
   const updatedEvent = { _id: request.params.id };
@@ -85,40 +83,47 @@ function updateEvent(request, response) {
       // callback
       if (error) {
         response.status(404);
-        response.send('Events not found!');
+        response.send("Events not found!");
       }
-      response.json(updatedEvent);
     }
+  ).then((data) =>
+    response.json({
+      message: "Event updated successfully",
+      event: updatedEvent,
+    })
   );
-  response.render('pages/event', {
-    event: updatedEvent,
-  });
 }
 
-function deleteEvent(request, response) {
+function deleteEvent(request, response, next) {
   const id = request.params.event_id;
-  Event.deleteOne({ _id: id }, function (error) {
+  Event.findOneAndDelete({ _id: id }, (error) => {
     if (error) {
       response.json({
-        error: 'Event not found',
+        error: "Event not found",
       });
     }
-    response.json({
-      message: `Deleted event with id ${id}`,
-    });
-    response.redirect('/events');
-  });
+  })
+    .then((data) =>
+      response.json({
+        message: "Event deleted",
+        event: data,
+      })
+    )
+    .catch(next);
 }
 
-function deleteAllEvents(request, response) {
-  Event.deleteMany({}, function (error) {
+function deleteAllEvents(request, response, next) {
+  Event.deleteMany({}, (error) => {
     if (error) {
       response.json({
-        error: 'Event not found',
+        error: "Event not found",
       });
     }
-    response.json({
-      message: `Deleted all events`,
-    });
-  });
+  }).then((data) =>
+    response
+      .json({
+        message: `All events deleted`,
+      })
+      .catch(next)
+  );
 }
