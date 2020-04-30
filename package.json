@@ -1,7 +1,7 @@
 {
   "name": "EventsAPI",
   "version": "1.0.0",
-  "description": "",
+  "description": "Virtual events calendar",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
@@ -11,14 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chingu-voyages/v16-solo-jasterix.git"
+    "url": "git+https://github.com/jasterix/eventsAPI.git"
   },
   "author": "jasterix",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chingu-voyages/v16-solo-jasterix/issues"
+    "url": "https://github.com/jasterix/eventsAPI/issues"
   },
-  "homepage": "https://github.com/chingu-voyages/v16-solo-jasterix#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
