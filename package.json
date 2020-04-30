@@ -41,5 +41,8 @@
     "react-scripts": "^3.4.0",
     "swagger-ui-express": "^2.0.13",
     "sync-request": "^4.0.2"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0"
   }
 }
