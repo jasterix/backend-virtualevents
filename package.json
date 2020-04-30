@@ -1,7 +1,7 @@
 {
-  "name": "blk-wall",
+  "name": "events-api",
   "version": "1.0.0",
-  "description": "A curated directory of black owned restaurants, bars and more in NYC",
+  "description": "Virtual events calendar",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
@@ -37,8 +37,6 @@
     "mongoose": "^5.9.10",
     "morgan": "^1.9.1",
     "node-uuid": "^1.4.8",
-    "react-dom": "^16.13.0",
-    "react-scripts": "^3.4.0",
     "swagger-ui-express": "^2.0.13",
     "sync-request": "^4.0.2"
   },
