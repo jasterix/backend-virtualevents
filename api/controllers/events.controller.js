@@ -50,6 +50,8 @@ function postEvent(request, response, next) {
         event: data,
       });
     })
+    .then(response.render("pages/create"))
+
     .catch(next);
 }
 
@@ -57,13 +59,16 @@ function getEvent(request, response, next) {
   let id = request.params.event_id;
   let event = Event.findById(id);
 
-  Event.find({ _id: ObjectId(id) }, (error, events) => {
+  Event.find({ _id: ObjectId(id) }, (error, event) => {
     if (error) {
-      console.log(error);
+      response.status(404);
+      response.send("Events not found!");
     }
-  })
-    .then((data) => response.json(data))
-    .catch(next);
+    response.render("pages/event", {
+      event: event[0],
+      string: "hello",
+    });
+  });
 }
 
 function updateEvent(request, response, next) {
