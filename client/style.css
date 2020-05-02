@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* For small tablets */
+@media screen and (min-width: 620px) {
+  /* styles */
+}
+
+/* For large tables */
+@media screen and (min-width: 960px) {
+  /* styles */
+}
+
+/* For desktops */
+@media screern and (min-width: 1200px) {
+  /* styles */
+}
