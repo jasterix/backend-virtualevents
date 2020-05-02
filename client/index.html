@@ -7,11 +7,46 @@
     <title>Upcoming Virtual Events</title>
   </head>
   <body>
-    <header>This is the header</header>
-    <nav>This is my nav bar</nav>
-    <aside>This is the sidebar</aside>
-    <main>
+    <header class="banner">This is the header</header>
+    <nav class="site-nav grid">
+      <ul>
+        <li><a href="#events"> View virtual events</a></li>
+        <li><a href="#subscribe">Subscribe for weekly emails</a></li>
+        <li><a href="#calendar">Download events calendar</a></li>
+      </ul>
+    </nav>
+    <aside class="sidebar grid">
+      This is the sidebar
+      <ul>
+        <li>View all events</li>
+        <li>View Conferences</li>
+        <li>View Workshops</li>
+        <li>View meetups</li>
+      </ul>
+    </aside>
+    <main class="container grid">
       This is the main area
+      <section class="events">
+        <a href="#">
+          <ul class="event">
+            <li class="date">Date</li>
+            <li class="start-time">Event Start Time</li>
+            <li class="type">Event Type</li>
+            <li class="title">Event Title</li>
+          </ul>
+        </a>
+        This is the list of events
+      </section>
+      <section class="subscribe">
+        <form action="post">
+          <input type="text" placeholder="what should I call you?" />
+          <input type="email" placeholder="what's your email address?" />
+          <button class="button submit">Subscribe to event emails</button>
+        </form>
+      </section>
+      <section class="calendar">
+        This is the section for the calendar
+      </section>
     </main>
     <footer>This is the footer</footer>
     <script src="../app.js"></script>
