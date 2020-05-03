@@ -13,7 +13,7 @@ const eventRoutes = require("./api/routes/events.routes.js");
 
 if (process.env.NODE_ENV === "production") {
   mongoose
-    .connect(process.env.PRODUCTION_DATABASE_URL, {
+    .connect(process.env.DEVELOPMENT_DATABASE_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
