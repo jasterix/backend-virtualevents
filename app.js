@@ -65,10 +65,10 @@ app.set("view engine", "ejs");
 app.use(expressLayouts);
 
 // TELL EXPRESS WHERE TO LOOK FOR STATIC ASSETS
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "public/"));
 
 // Routes which should handle requests
-app.use("/api", eventRoutes);
+app.use("/events", eventRoutes);
 app.get("/", (request, response) => {
   response.render("pages/home");
 });
