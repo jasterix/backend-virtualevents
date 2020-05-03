@@ -21,7 +21,6 @@
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
-    "bootstrap": "^4.4.1",
     "create-react-app": "^3.4.1",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.2",
