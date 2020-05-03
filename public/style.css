@@ -17,10 +17,10 @@ li {
 
 /* base styles */
 body {
-  background: var(--secondary);
+  background-color: var(--secondary);
   overflow-x: hidden;
 }
-.button {
+.btn {
   color: var(--primary);
   font-weight: bolder;
   font-size: 15px;

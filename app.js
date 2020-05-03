@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === "production") {
 
 // CONNECT TO MONGODB DATABASE
 mongoose
-  .connect(process.env.DATABASE_URL, {
+  .connect(process.env.PRODUCTION_DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -65,7 +65,7 @@ app.set("view engine", "ejs");
 app.use(expressLayouts);
 
 // TELL EXPRESS WHERE TO LOOK FOR STATIC ASSETS
-app.use(express.static(__dirname + "public/"));
+app.use(express.static(__dirname + "/public"));
 
 // Routes which should handle requests
 app.use("/events", eventRoutes);
