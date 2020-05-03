@@ -13,7 +13,7 @@ const eventRoutes = require("./api/routes/events.routes.js");
 
 if (process.env.NODE_ENV === "production") {
   mongoose
-    .connect(process.env.DEVELOPMENT_DATABASE_URL, {
+    .connect(process.env.DATABASE_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === "production") {
 
 // CONNECT TO MONGODB DATABASE
 mongoose
-  .connect(process.env.DEVELOPMENT_DATABASE_URL, {
+  .connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
