@@ -20,6 +20,10 @@ body {
   background-color: var(--secondary);
   overflow-x: hidden;
 }
+.form {
+  padding-left: 15%;
+  padding-right: auto;
+}
 .btn {
   color: var(--primary);
   font-weight: bolder;
@@ -32,8 +36,14 @@ body {
   padding: 12px;
   border-radius: 5px;
   min-height: 24px;
-
   /* position: absolute; */
+}
+
+.left-check {
+  float: left;
+}
+.right-check {
+  float: left;
 }
 
 /* For small tablets */

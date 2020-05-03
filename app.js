@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === "production") {
 
 // CONNECT TO MONGODB DATABASE
 mongoose
-  .connect(process.env.PRODUCTION_DATABASE_URL, {
+  .connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
