@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === "production") {
   // TELL EXPRESS WHERE TO LOOK FOR STATIC ASSETS
   app.use(express.static(__dirname + "/public"));
   app.get("/", (request, response) => {
-    response.sendFile(path.join(__dirname, "build", "index.html"));
+    response.render("pages/home");
   });
 }
 
