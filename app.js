@@ -12,8 +12,14 @@ const expressValidator = require("express-validator");
 const eventRoutes = require("./api/routes/events.routes.js");
 
 if (process.env.NODE_ENV === "production") {
+  mongoose
+    .connect(process.env.PRODUCTION_DATABASE_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .catch((err) => console.log(`Database Error: ${err}`));
   // TELL EXPRESS WHERE TO LOOK FOR STATIC ASSETS
-  app.use(express.static(path.join(__dirname, "../client/build")));
+  app.use(express.static(__dirname + "/public"));
   app.get("/", (request, response) => {
     response.sendFile(path.join(__dirname, "build", "index.html"));
   });
@@ -21,7 +27,7 @@ if (process.env.NODE_ENV === "production") {
 
 // CONNECT TO MONGODB DATABASE
 mongoose
-  .connect(process.env.DATABASE_URL, {
+  .connect(process.env.DEVELOPMENT_DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
