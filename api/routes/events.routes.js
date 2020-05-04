@@ -20,16 +20,16 @@ router.get("/", eventsController.getEvents);
 router.post("/new", eventsController.postEvent);
 
 // GET EVENT PAGE/ MAIN CONTROLLER
-router.get("/:event_id", eventsController.getEvent);
+router.get("/:id", eventsController.getEvent);
 
 // GET EDIT EVENT PAGE/ MAIN CONTROLLER
-router.get("/:event_id/edit", pagesController.showEditEvent);
+router.get("/:id/edit", pagesController.showEditEvent);
 
 // PUT EVENT / EVENT CONTROLLER
-router.post("/:event_id", eventsController.updateEvent);
+router.post("/:id", eventsController.updateEvent);
 
 // DELETE EVENT / EVENT CONTROLLER
-router.delete("/:event_id", eventsController.deleteEvent);
+router.delete("/:id", eventsController.deleteEvent);
 
 // DELETE ALL EVENTS / EVENT CONTROLLER
 router.delete("/deleteAll", eventsController.deleteAllEvents);

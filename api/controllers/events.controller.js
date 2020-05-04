@@ -63,7 +63,7 @@ function postEvent(request, response, next) {
 }
 
 function getEvent(request, response, next) {
-  let id = request.params.event_id;
+  let id = request.params.id;
   let event = Event.findById(id);
 
   Event.find({ _id: ObjectId(id) }, (error, event) => {
@@ -78,9 +78,9 @@ function getEvent(request, response, next) {
 }
 
 function updateEvent(request, response, next) {
-  console.log(request.params.event_id);
+  console.log("hi ", request.params.id);
 
-  const id = request.params.event_id;
+  const id = request.params.id;
   const params = request.body;
   const updatedEvent = { _id: request.params.id };
 
@@ -112,7 +112,7 @@ function updateEvent(request, response, next) {
 }
 
 function deleteEvent(request, response, next) {
-  const id = request.params.event_id;
+  const id = request.params.id;
   Event.deleteOne({ _id: id }, (error) => {
     if (error) {
       response.json({
