@@ -8,9 +8,12 @@
   <h2><%= event["title"] %></h2>
 
   <div>
-    <p id="date"><%= event.startDate%></p>
+    <%let options = { weekday: 'long', year: 'numeric', month: 'long', day:
+    'numeric', hour: "numeric", minute: 'numeric' }%>
+    <p id="date"><%= event.startDate.toLocaleDateString('us-en', options)%></p>
+    -
+    <p id="date"><%= event.endDate.toLocaleDateString('us-en', options)%></p>
     --
-    <p><%=event.endDate%></p>
   </div>
   <p id="description"><%= event.description %></p>
   <a href="/events/<%= event.id %>/edit" class="btn btn-sm btn-primary">Edit</a>
