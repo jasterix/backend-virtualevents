@@ -16,13 +16,16 @@ router.get("/new", mainController.showCreate);
 // GET ALL EVENTS / EVENTS CONTROLLER
 router.get("/", eventsController.getEvents);
 
+// SHOW ALL EVENTS PAGE / PAGE CONTROLLER
+router.get("/allEvents", pagesController.showAllEvents);
+
 // CREATE EVENT / EVENT CONTROLLER
 router.post("/new", eventsController.postEvent);
 
 // GET EVENT PAGE/ MAIN CONTROLLER
 router.get("/:id", eventsController.getEvent);
 
-// GET EDIT EVENT PAGE/ MAIN CONTROLLER
+// GET EDIT EVENT PAGE/ PAGE CONTROLLER
 router.get("/:id/edit", pagesController.showEditEvent);
 
 // PUT EVENT / EVENT CONTROLLER

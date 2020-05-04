@@ -38,6 +38,14 @@ body {
   min-height: 24px;
   /* position: absolute; */
 }
+.table {
+  max-width: 80%;
+  margin: auto;
+}
+
+.description {
+  width: 70%;
+}
 
 .left-check {
   float: left;
