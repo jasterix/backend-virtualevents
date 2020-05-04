@@ -6,10 +6,10 @@
 <link rel="icon" type="image/png" href="../favicon.ico" /> -->
 <div class="jumbotron text-center">
   <h2>Title: <%= event["title"] %></h2>
+
   <div>
-    <p></p>
+    <p id="date"><%= event.startDate%> -- <%=event.endDate%></p>
   </div>
 
-  <label for="description">Description:</label>
   <p id="description"><%= event.description %></p>
 </div>

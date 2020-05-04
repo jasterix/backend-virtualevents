@@ -30,9 +30,17 @@ function postEvent(request, response, next) {
       error: "Request body cannot be empty",
     });
   }
+  const { free, techWomen, blackTech } = request.body;
+
+  free === "on" ? (request.body.free = true) : (request.body.free = false);
+  techWomen === "on"
+    ? (request.body.techWomen = true)
+    : (request.body.techWomen = false);
+  blackTech === "on"
+    ? (request.body.blackTech = true)
+    : (request.body.blackTech = false);
 
   const event = new Event({
-    _id: new mongoose.Types.ObjectId(),
     title: request.body.title,
     startDate: request.body.startDate,
     endDate: request.body.endDate,
@@ -50,8 +58,7 @@ function postEvent(request, response, next) {
         event: data,
       });
     })
-    .then(response.render("pages/create"))
-
+    .then(response.render("pages/event"))
     .catch(next);
 }
 
@@ -66,7 +73,6 @@ function getEvent(request, response, next) {
     }
     response.render("pages/event", {
       event: event[0],
-      string: "hello",
     });
   });
 }
