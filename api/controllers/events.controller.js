@@ -78,6 +78,8 @@ function getEvent(request, response, next) {
 }
 
 function updateEvent(request, response, next) {
+  console.log(request.params.event_id);
+
   const id = request.params.event_id;
   const params = request.body;
   const updatedEvent = { _id: request.params.id };
@@ -97,12 +99,16 @@ function updateEvent(request, response, next) {
         response.send("Events not found!");
       }
     }
-  ).then((data) =>
-    response.json({
-      message: "Event updated successfully",
-      event: updatedEvent,
-    })
   );
+  response.render("pages/event", {
+    event: event[0],
+  });
+  //   .then( ( data ) =>
+  //   response.json({
+  //     message: "Event updated successfully",
+  //     event: updatedEvent,
+  //   })
+  // );
 }
 
 function deleteEvent(request, response, next) {

@@ -5,11 +5,14 @@
 <!-- <link rel="stylesheet" href="../style.css" />
 <link rel="icon" type="image/png" href="../favicon.ico" /> -->
 <div class="jumbotron text-center">
-  <h2>Title: <%= event["title"] %></h2>
+  <h2><%= event["title"] %></h2>
 
   <div>
-    <p id="date"><%= event.startDate%> -- <%=event.endDate%></p>
+    <p id="date"><%= event.startDate%></p>
+    --
+    <p><%=event.endDate%></p>
   </div>
-
   <p id="description"><%= event.description %></p>
+  <a href="/events/<%= event.id %>/edit" class="btn btn-sm btn-primary">Edit</a>
 </div>
+hi

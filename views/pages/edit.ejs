@@ -1,0 +1,86 @@
+<div class="jumbotron text-center">
+  <h1>Editing <%= event.title %></h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <% if (errors) { %>
+    <div class="alert alert-danger">
+      <% for (error of errors) { %> <%= error %><br />
+      <% } %>
+    </div>
+    <% } %>
+
+    <form action="<%= event.id %>" method="PUT">
+      <div class="form-group">
+        <label>Title</label>
+        <input
+          type="text"
+          name="title"
+          class="form-control"
+          value="<%= event.title %>"
+        />
+      </div>
+      <div class="form-group">
+        <label>Start Date</label>
+        <input
+          type="datetime"
+          name="startDate"
+          class="form-control"
+          value="<%= event.startDate %>"
+        />
+      </div>
+      <div class="form-group">
+        <label>End Date</label>
+        <input
+          type="datetime-local"
+          name="EndDate"
+          class="form-control"
+          value="<%= event.endDate %>"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea name="description" rows="5" class="form-control">
+<%= event.description %></textarea
+        >
+      </div>
+      <div class="form-group check">
+        <label>Black Tech?</label>
+        <input
+          type="checkbox"
+          name="blackTech"
+          class="form-control"
+          value="<%=event.blackTech%>"
+        />
+      </div>
+      <div class="form-group check">
+        <label>Tech Women?</label>
+        <input
+          type="checkbox"
+          name="techWomen"
+          class="form-control"
+          value="<%=event.techWomen%>"
+        />
+      </div>
+
+      <div class="form-group check">
+        <label>Free?</label>
+        <input
+          type="checkbox"
+          checked="true"
+          name="free"
+          class="form-control"
+          value="<%=event.free%>"
+        />
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-success btn-lg">
+          Update event
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
