@@ -11,19 +11,19 @@ const expressValidator = require("express-validator");
 // IMPORT ROUTES
 const eventRoutes = require("./api/routes/events.routes.js");
 
-if (process.env.NODE_ENV === "production") {
-  mongoose
-    .connect(process.env.PRODUCTION_DATABASE_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
-    .catch((err) => console.log(`Database Error: ${err}`));
-  // TELL EXPRESS WHERE TO LOOK FOR STATIC ASSETS
-  app.use(express.static(__dirname + "/public"));
-  app.get("/", (request, response) => {
-    response.render("pages/home");
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+//   mongoose
+//     .connect(process.env.PRODUCTION_DATABASE_URL, {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//     })
+//     .catch((err) => console.log(`Database Error: ${err}`));
+//   // TELL EXPRESS WHERE TO LOOK FOR STATIC ASSETS
+//   app.use(express.static(__dirname + "/public"));
+//   app.get("/", (request, response) => {
+//     response.render("pages/home");
+//   });
+// }
 
 // CONNECT TO MONGODB DATABASE
 mongoose
