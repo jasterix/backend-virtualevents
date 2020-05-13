@@ -32,7 +32,7 @@ router.get("/:id/edit", pagesController.showEditEvent);
 router.post("/:id", eventsController.updateEvent);
 
 // DELETE EVENT / EVENT CONTROLLER
-router.delete("/:id", eventsController.deleteEvent);
+router.post("/delete/:id", eventsController.deleteEvent);
 
 // DELETE ALL EVENTS / EVENT CONTROLLER
 router.delete("/deleteAll", eventsController.deleteAllEvents);

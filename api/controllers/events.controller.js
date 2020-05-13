@@ -100,8 +100,7 @@ function updateEvent(request, response, next) {
       //   event: event,
       // });
     }
-  )
-  .then((data) =>
+  ).then((data) =>
     response.json({
       message: "Event updated successfully",
       event: updatedEvent,
@@ -110,6 +109,8 @@ function updateEvent(request, response, next) {
 }
 
 function deleteEvent(request, response, next) {
+  console.log("hi");
+
   const id = request.params.id;
   Event.deleteOne({ _id: id }, (error) => {
     if (error) {

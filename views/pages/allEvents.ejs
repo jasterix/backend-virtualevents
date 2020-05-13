@@ -22,9 +22,15 @@
       <td class="description"><%= event.description %></td>
       <td>
         <a href="/events/<%= event.id %>" class="btn btn-sm btn-primary"
-          >View Event</td></a
+          >View Event</a
         >
-      
+      </td>
+
+      <td>
+        <form action="/events/delete/<%= event.id %>" method="post">
+          <button type="submit" class="btn btn-sm"">Delete Event</button>
+        </form>
+      </td>
     </tr>
 
     <!-- <td>
