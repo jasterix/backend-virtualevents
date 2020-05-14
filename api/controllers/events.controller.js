@@ -122,7 +122,6 @@ function deleteEvent(request, response, next) {
     response
       .json({
         message: "Event deleted",
-        event: data,
       })
       .catch(next)
   );
