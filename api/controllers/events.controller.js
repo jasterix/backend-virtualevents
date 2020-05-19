@@ -71,10 +71,7 @@ function getEvent(request, response, next) {
       response.status(404);
       response.send("Events not found!");
     }
-    response.render("pages/event", {
-      event: event[0],
-    });
-  });
+  }).then((data) => response.json(data));
 }
 
 function updateEvent(request, response, next) {
