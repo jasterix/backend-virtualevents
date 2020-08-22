@@ -1,6 +1,6 @@
-const faker = require("faker");
-const mongoose = require("mongoose");
-const Event = require("../api/models/event.js");
+const faker = require( "faker" );
+const mongoose = require( "mongoose" );
+const Event = require( "../api/models/event.js" );
 
 let events = [
   {
@@ -217,19 +217,19 @@ let events = [
   },
 ];
 
-const seed = (array) => {
+const seed = ( array ) => {
   let seeded = false;
-  if (!seeded) {
-    events.forEach((event) => {
-      Event.create(event).then((result) => {
-        console.log(result);
-      });
-    });
+  if ( !seeded ) {
+    events.forEach( ( event ) => {
+      Event.create( event ).then( ( result ) => {
+        console.log( result );
+      } );
+    } );
     seeded = true;
-    console.log("seeded");
+    console.log( "seeded" );
   }
 
-  console.log("Already seeded");
+  console.log( "Already seeded" );
 };
 
 // events.forEach((event) => {
